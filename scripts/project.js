@@ -34,22 +34,22 @@ let createShop = function () {
 */
 let createProduct = function (product, index) {
 	// build the div element for product
-	let block = document.createElement("div");
-	block.className = "produit";
+	let div = document.createElement("div");
+	div.className = "produit";
 	// set the id for this product
-	block.id = index + "-" + productIdKey;
+	div.id = index + "-" + productIdKey;
 	// build the h4 part of 'block'
-	block.appendChild(createBlock("h4", product.name));
+	div.appendChild(createBlock("h4", product.name));
 	
 	// /!\ should add the figure of the product... does not work yet... /!\ 
-	block.appendChild(createFigureBlock(product));
+	div.appendChild(createFigureBlock(product));
 
 	// build and add the div.description part of 'block' 
-	block.appendChild(createBlock("div", product.description, "description"));
+	div.appendChild(createBlock("div", product.description, "description"));
 	// build and add the div.price part of 'block'
-	block.appendChild(createBlock("div", product.price, "prix"));
+	div.appendChild(createBlock("div", product.price, "prix"));
 	// build and add control div block to product element
-	block.appendChild(createOrderControlBlock(index));
+	div.appendChild(createOrderControlBlock(index));
 	return block;
 }
 
