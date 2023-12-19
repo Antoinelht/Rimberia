@@ -108,5 +108,5 @@ let createOrderControlBlock = function (index) {
 * TODO : write the correct code
 */
 let createFigureBlock = function (product) {
-	return createBlock("figure", "");
+	return createBlock("figure", `<img src="${product.image}"/>`,"image");
 }
