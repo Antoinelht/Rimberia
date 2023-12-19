@@ -21,7 +21,7 @@ window.addEventListener("load", init);
 */
 let createShop = function () {
 	let shop = document.getElementById("boutique");
-	for(i = 0; i < catalog.length; i++) {
+	for (i = 0; i < catalog.length; i++) {
 		shop.appendChild(createProduct(catalog[i], i));
 	}
 }
@@ -40,7 +40,7 @@ let createProduct = function (product, index) {
 	block.id = index + "-" + productIdKey;
 	// build the h4 part of 'block'
 	block.appendChild(createBlock("h4", product.name));
-	
+
 	// /!\ should add the figure of the product... does not work yet... /!\ 
 	block.appendChild(createFigureBlock(product));
 
@@ -62,7 +62,7 @@ let createProduct = function (product, index) {
 let createBlock = function (tag, content, cssClass) {
 	let element = document.createElement(tag);
 	if (cssClass != undefined) {
-		element.className =  cssClass;
+		element.className = cssClass;
 	}
 	element.innerHTML = content;
 	return element;
@@ -85,16 +85,27 @@ let createOrderControlBlock = function (index) {
 	input.type = "number";
 	input.value = "0";
 
+	input.addEventListener('input', (event) => {
+		let inputNum = event.target.value;
+		let clean = inputNum.replace(/\D/g, '');
+		event.target.value = clean;
+	})
+
+
+
 	// add input to control as its child
 	control.appendChild(input);
-	
+
+	//add event handling
+
+
 	// create order button
 	let button = document.createElement("button");
 	button.className = 'commander';
 	button.id = index + "-" + orderIdKey;
 	// add control to control as its child
 	control.appendChild(button);
-	
+
 	// the built control div node is returned
 	return control;
 }
@@ -108,5 +119,5 @@ let createOrderControlBlock = function (index) {
 * TODO : write the correct code
 */
 let createFigureBlock = function (product) {
-	return createBlock("figure", `<img src="${product.image}"/>`,"image");
+	return createBlock("figure", `<img src="${product.image}"/>`, "image");
 }
