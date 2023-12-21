@@ -12,6 +12,7 @@ let total = 0;
 let init = function () {
 	createShop();
 }
+
 window.addEventListener("load", init);
 
 // usefull functions
@@ -19,12 +20,6 @@ window.addEventListener("load", init);
 * create and add all the div.produit elements to the div#boutique element
 * according to the product objects that exist in 'catalog' variable
 */
-let createShop = function () {
-	let shop = document.getElementById("boutique");
-	for (i = 0; i < catalog.length; i++) {
-		shop.appendChild(createProduct(catalog[i], i));
-	}
-}
 
 /*
 * create the div.produit elment corresponding to the given product
@@ -40,7 +35,7 @@ let createProduct = function (product, index) {
 	block.id = index + "-" + productIdKey;
 	// build the h4 part of 'block'
 	block.appendChild(createBlock("h4", product.name));
-
+	
 	// /!\ should add the figure of the product... does not work yet... /!\ 
 	block.appendChild(createFigureBlock(product));
 
@@ -59,10 +54,10 @@ let createProduct = function (product, index) {
  * @param content (string) = the html wontent of the created element (example : "bla bla")
  * @param cssClass (string) (optional) = the value of the 'class' attribute for the created element
  */
-let createBlock = function (tag, content, cssClass) {
+let createBlock = function (tag, content, cssClass,) {
 	let element = document.createElement(tag);
 	if (cssClass != undefined) {
-		element.className = cssClass;
+		element.className =  cssClass;
 	}
 	element.innerHTML = content;
 	return element;
@@ -76,38 +71,58 @@ let createBlock = function (tag, content, cssClass) {
 *   /!\  in this version button and input do nothing  /!\  
 */
 let createOrderControlBlock = function (index) {
-	let control = document.createElement("div");
-	control.className = "controle";
+    let control = document.createElement("div");
+    control.className = "controle";
 
-	// create input quantity element
-	let input = document.createElement("input");
-	input.id = index + '-' + inputIdKey;
-	input.type = "number";
-	input.value = "0";
+    // create input quantity element
+    let input = document.createElement("input");
+    input.id = index + '-' + inputIdKey;
+    input.type = "number";
+    input.value = "0";
 
-	input.addEventListener('input', (event) => {
-		let inputNum = event.target.value;
-		let clean = inputNum.replace(/\D/g, '');
-		event.target.value = clean;
-	})
+    input.addEventListener('input', (event) => {
+        let inputNum = event.target.value;
+        let clean = inputNum.replace(/\D/g, '');
+        event.target.value = clean;
+    })
 
+	input.addEventListener("input", function () {
+        if (this.value > 9) {
+            this.value = "9";
+		} else if (this.value == 0) {
+            this.value = "";
+		}
+    });
 
+    // add input to control as its child
+    control.appendChild(input);
 
-	// add input to control as its child
-	control.appendChild(input);
+    //add event handling
+	input.addEventListener('input', function () {
+		let value = this.value;
+	
+		// retrieve button from its parent control
+		let button = this.parentNode.querySelector('.commander');
+	
+		// if the value of the quantity input is 0, disable the button, otherwise enable it
+		if (value == 0)  {
+			button.disabled = true;
+		} else {
+			button.disabled = false;
+		}
+		console.log(input)
+	});
 
-	//add event handling
+    // create order button
+    let button = document.createElement("button");
+    button.className = 'commander';
+    button.id = index + "-" + orderIdKey;
+	button.disabled = true;
+    // add control to control as its child
+    control.appendChild(button);
 
-
-	// create order button
-	let button = document.createElement("button");
-	button.className = 'commander';
-	button.id = index + "-" + orderIdKey;
-	// add control to control as its child
-	control.appendChild(button);
-
-	// the built control div node is returned
-	return control;
+    // the built control div node is returned
+    return control;
 }
 
 
@@ -119,5 +134,89 @@ let createOrderControlBlock = function (index) {
 * TODO : write the correct code
 */
 let createFigureBlock = function (product) {
-	return createBlock("figure", `<img src="${product.image}"/>`, "image");
+	return createBlock("figure", `<img src="${product.image}"/>`,"image");
 }
+
+
+let createShop = function () {
+	let shop = document.getElementById("boutique");
+	for(i = 0; i < catalog.length; i++) {
+		shop.appendChild(createProduct(catalog[i], i));
+	}
+	
+
+	console.log(document.getElementById("2-order"));
+}
+
+
+let button = document.getElementById("2-order").addEventListener('click', (product,index) => {
+	addToCart(product, index);
+	 console.log(button);
+})
+
+function addToCart() {
+ console.log(product);
+
+	let quantityInput = document.getElementById(index + '-' + inputIdKey); 
+	console.log(quantityInput); 
+	let quantity = parseInt(quantityInput.value);
+	console.log(quantity); 
+
+	// build the div element for product
+	let block = document.createElement("div");
+	block.className = "achat";
+	// set the id for this product
+	block.id = index;
+	// build the image of 'block'
+	block.appendChild(createFigureBlock(product));
+	// build the h4 part of 'block'
+	block.appendChild(createBlock("h4", product.name));
+	// build and add the div.quantity part of 'block'
+	block.appendChild(createBlock("p", quantity + " ", "quantite"));
+	// build and add the div.price part of 'block'
+	block.appendChild(createBlock("p", product.price + " €", "prix"));
+	// build and add the btn.delete part of 'block
+	block.appendChild(createBlock("button", "retirer"));
+
+
+	let addToCartContainer = document.querySelector('.achats'); 
+	addToCartContainer.appendChild(block); 
+
+return control;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Récupérer les éléments nécessaires du DOM
+    const filterInput = document.getElementById("filter");
+    const boutiqueDiv = document.getElementById("boutique");
+    const totalSpan = document.getElementById("montant");
+    const achatsDiv = document.querySelector(".achats");
+
+    // Fonction pour mettre à jour l'affichage des produits
+    function updateDisplay(products) {
+      // Code pour afficher les produits en fonction de la recherche
+      // Vous pouvez adapter cela en fonction de votre logique d'affichage
+
+      // Exemple simple : afficher le nom de chaque produit dans la boutiqueDiv
+      boutiqueDiv.innerHTML = "";
+      products.forEach(function (product, index) {
+        let productDiv = createProduct(product, index);
+        boutiqueDiv.appendChild(productDiv);
+      });
+    }
+
+    // Fonction de filtrage des produits en fonction de la recherche
+    function filterProducts(searchTerm) {
+      searchTerm = searchTerm.toLowerCase();
+      let filteredProducts = catalog.filter(function (product) {
+        return product.name.toLowerCase().includes(searchTerm);
+      });
+      updateDisplay(filteredProducts);
+    }
+
+    // Écouter les changements dans l'entrée de recherche
+    filterInput.addEventListener("input", function () {
+      let searchTerm = filterInput.value;
+      filterProducts(searchTerm);
+    });
+  });

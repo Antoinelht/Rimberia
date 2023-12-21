@@ -3,7 +3,7 @@ body {
 	width : 100%;
 	font-family : sans-serif;
 	padding-left : 20px;
-}
+}	
 
 
 h1 {
@@ -132,6 +132,10 @@ button.commander {
 
 button.commander {
 	background-image : url("./images/panier.jpg");
+}
+
+button.commander:focus{
+	opacity:1;
 }
 
 
