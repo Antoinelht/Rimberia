@@ -79,7 +79,7 @@ let createOrderControlBlock = (index) => {
 	return control;
 
 };
-
+//a revoir
 let updateButtonState = function (button, quantity) {
 	button.disabled = quantity === 0;
 	button.style.opacity = quantity === 0 ? 0.25 : 1;
@@ -112,10 +112,12 @@ let addToCart = (index, quantity) => {
 		//ici le quand tu ajoute l'image tu lui met une plus petite pour que ca depasse pas 
 		cartItem.appendChild(itemImg).style.width = '30px';
 		cartItem.appendChild(itemName);
-		cartItem.appendChild(itemQuantity);
-		cartItem.appendChild(itemPrice);
 
+		//a revoir
+		//cartItem.appendChild(itemQuantity);
+		//cartItem.appendChild(itemPrice);
 
+		// creer ici le bouton lier au panier pour le modifier dynamiquement 
 
 		let deleteButton = document.createElement("button");
 		deleteButton.className = "retirer";
