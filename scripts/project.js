@@ -113,7 +113,6 @@ let addToCart = (index, quantity) => {
 		cartItem.appendChild(itemImg).style.width = '30px';
 		cartItem.appendChild(itemName);
 		cartItem.appendChild(itemQuantity);
-		cartItem.appendChild(itemPrice);
 
 
 
