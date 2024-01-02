@@ -80,13 +80,12 @@ let createOrderControlBlock = (index) => {
 	input.value = "0";
 	//add event handling
 	input.addEventListener("input", function () {
-		let quantity = parseInt(input.value);
-		if (quantity < MIN_QTY || quantity < 0 || quantity > MAX_QTY) {
+
+			let quantity = (input.value);
+		if (quantity === RegExp("\D+") || quantity < MIN_QTY || quantity == 0 || quantity > MAX_QTY ) {
 			input.value = "0";
 		}
-		else if (quantity == 0) {
-			updateButtonState(button, quantity);
-		}
+		
 		updateButtonState(button, quantity);
 	});
 	// create order button
@@ -168,7 +167,9 @@ let addToCart = (index, quantity) => {
 
 	}
 	updateTotal();
+	updateLocalStorage()
 };
+
 // check the total cart 
 let updateTotal = () => {
 	let cartItems = document.querySelectorAll("#panier .achat");
@@ -180,8 +181,11 @@ let updateTotal = () => {
 		total += quantity * product.price;
 	});
 	total = total.toFixed(2);
-	document.getElementById("montant").textContent = total;
+	document.getElementById("montant").textContent = total;	
+	
+
 };
+
 
 let createFigureBlock = function (product) {
 	let figure = document.createElement("figure");
@@ -191,6 +195,7 @@ let createFigureBlock = function (product) {
 	figure.appendChild(image);
 
 	return figure;
+
 };
 document.addEventListener("DOMContentLoaded", function () {
 	// // Retrieve the required DOM elements
