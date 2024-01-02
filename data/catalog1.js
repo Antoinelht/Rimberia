@@ -1,98 +1,98 @@
 var catalog = [
     {
-	    "name" : "Nounours marron",
-	    "description" : "un joli nounours marron avec un foulard",
-	    "image" : "images/nounours1.jpg",
-	    "price" : "35"
+	    "name" : "Hublo",
+	    "description" : "This watch can make you a real buisness man",
+	    "image" : "images/montre.png",
+	    "price" : "8000"
 	},
 	{
-	    "name" : "Nounours blanc",
-	    "description" : "un ours blanc tout doux",
-	    "image" : "images/nounours2.jpg",
-	    "price" : "42"
+	    "name" : "Rolex",
+	    "description" : "Watch with swiss mecanic",
+	    "image" : "images/montre15.png",
+	    "price" : "4200"
 	},	
 	{
-	    "name" : "Peluche Ane gris",
-	    "description" : "joli petit ane gris",
-	    "image" : "images/ane.jpg",
-	    "price" : "15"
+	    "name" : "Cartier",
+	    "description" : "Beautiful watch with two carat inside",
+	    "image" : "images/montre1.png",
+	    "price" : "5500"
 	},
 	{
-	    "name" : "Pokemon Bulbizarre",
-	    "description" : "Pokemon Bulbizarre",
-	    "image" : "images/bulbizarre.jpg",
-	    "price" : "25"
+	    "name" : "Breitling",
+	    "description" : "Incredible watch",
+	    "image" : "images/montre2.png",
+	    "price" : "2500"
 	},
 	{
-	    "name" : "Cochon rose",
-	    "description" : "un petit cochon rose tout frippé",
-	    "image" : "images/cochon.jpg",
-	    "price" : "35"
+	    "name" : "TagHuer",
+	    "description" : "Gold watch",
+	    "image" : "images/montre14.png",
+	    "price" : "3500"
 	},
 	{
-	    "name" : "Donkey Kong",
-	    "description" : "Le célèbre Donkey Kong",
-	    "image" : "images/donkekong.jpg",
-	    "price" : "25"
+	    "name" : "Philip Patek",
+	    "description" : "Amazing watch",
+	    "image" : "images/montre3.png",
+	    "price" : "2500"
 	},
 	{
-	    "name" : "Girafe",
-	    "description" : "Petite girafe assise",
-	    "image" : "images/girafe.jpg",
-	    "price" : "23"
+	    "name" : "Rolex",
+	    "description" : "Watch this",
+	    "image" : "images/montre4.png",
+	    "price" : "2300"
 	},
 	{
-	    "name" : "Peluche Hibou",
-	    "description" : "Un hibou tout en plume.",
-	    "image" : "images/hibou.jpg",
-	    "price" : "22"
+	    "name" : "Cartier",
+	    "description" : "Ice watch",
+	    "image" : "images/montre13.png",
+	    "price" : "2200"
 	},
 	{
-	    "name" : "Link",
-	    "description" : "Link le héros de la série Zelda.",
-	    "image" : "images/link.jpg",
-	    "price" : "25"
+	    "name" : "Hublo",
+	    "description" : "Watch with chrome",
+	    "image" : "images/montre5.png",
+	    "price" : "2500"
 	},
 	{
-	    "name" : "Nounours crème",
-	    "description" : "Il est pas migon avec ses grosses papattes ?",
-	    "image" : "images/nounours3.jpg",
-	    "price" : "35"
+	    "name" : "TagHuer",
+	    "description" : "Silver watch",
+	    "image" : "images/montre6.png",
+	    "price" : "3500"
 	},
 	{
-	    "name" : "Panda",
+	    "name" : "Philip Pateck",
 	    "description" : "Un bon gros panda joufflu",
-	    "image" : "images/panda.jpg",
-	    "price" : "35"
+	    "image" : "images/montre12.png",
+	    "price" : "3500"
 	},
 	{
-	    "name" : "Pokemon Pikachu",
-	    "description" : "Le plus célèbre des pokemons.",
-	    "image" : "images/pikachu.jpg",
-	    "price" : "25"
+	    "name" : "Hublo",
+	    "description" : "Gold watch",
+	    "image" : "images/montre7.png",
+	    "price" : "2500"
 	},
 	{
-	    "name" : "Peluche Poule",
-	    "description" : "Une idée originale de peluche",
-	    "image" : "images/poule.jpg",
-	    "price" : "27"
+	    "name" : "Cartier",
+	    "description" : "Beautiful watch",
+	    "image" : "images/montre8.png",
+	    "price" : "2700"
 	},
 	{
-	    "name" : "Renard",
+	    "name" : "TagHuer",
 	    "description" : "Un renard très sympathique.",
-	    "image" : "images/renard.jpg",
-	    "price" : "45"
+	    "image" : "images/montre11.png",
+	    "price" : "4500"
 	},
 	{
-	    "name" : "Pokemon Riolu",
-	    "description" : "Pokemon Riolu",
-	    "image" : "images/riolu.jpg",
-	    "price" : "25"
+	    "name" : "Chopar",
+	    "description" : "Awesome watch with 41mm",
+	    "image" : "images/montre9.png",
+	    "price" : "2500"
 	},
 	{
-	    "name" : "Pokemon Salameche",
-	    "description" : "Pokemon Salameche",
-	    "image" : "images/salameche.jpg",
-	    "price" : "25"
+	    "name" : "Breitling",
+	    "description" : "Amazing watch",
+	    "image" : "images/montre10.png",
+	    "price" : "2500"
 	}	
 ]
