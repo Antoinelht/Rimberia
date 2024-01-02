@@ -167,6 +167,7 @@ let addToCart = (index, quantity) => {
 
 	}
 	updateTotal();
+
 };
 
 // check the total cart 
