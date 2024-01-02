@@ -3,7 +3,7 @@ body {
 	width : 100%;
 	font-family : sans-serif;
 	padding-left : 20px;
-}
+}	
 
 
 h1 {
@@ -144,6 +144,10 @@ button.commander {
 button.commander:focus {
 	opacity: 1;
 	cursor: pointer;
+}
+
+button.commander:focus{
+	opacity:1;
 }
 
 
