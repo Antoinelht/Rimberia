@@ -136,7 +136,6 @@ button.commander {
 	background-size : cover;
 	border : solid 2px white;
 	opacity : 0.25;
-	pointer-events: none;
 }
 
 button.commander {
