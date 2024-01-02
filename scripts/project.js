@@ -201,9 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// // Retrieve the required DOM elements
 	const filterInput = document.getElementById("filter");
 	const boutiqueDiv = document.getElementById("boutique");
-	const totalSpan = document.getElementById("montant");
-	const achatsDiv = document.querySelector(".achats");
-
+	
 	// Product display update function
 	function updateDisplay(products) {
 		// Code to display products according to search criteria
