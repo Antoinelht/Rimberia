@@ -167,7 +167,6 @@ let addToCart = (index, quantity) => {
 
 	}
 	updateTotal();
-	updateLocalStorage()
 };
 
 // check the total cart 
