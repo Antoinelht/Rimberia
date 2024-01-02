@@ -109,7 +109,7 @@ control.appendChild(input);
 control.appendChild(button);
 return control;
 
-};
+};h
 // function for the button 
 let updateButtonState = function (button, quantity) {
 	button.disabled = quantity === 0;
