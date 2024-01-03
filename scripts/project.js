@@ -81,11 +81,11 @@ let createOrderControlBlock = (index) => {
 	//add event handling
 	input.addEventListener("input", function () {
 
-			let quantity = (input.value);
-		if (quantity === RegExp("\D+") || quantity < MIN_QTY || quantity == 0 || quantity > MAX_QTY ) {
+		let quantity = (input.value);
+		if (quantity === RegExp("\D+") || quantity < MIN_QTY || quantity == 0 || quantity > MAX_QTY) {
 			input.value = "0";
 		}
-		
+
 		updateButtonState(button, quantity);
 	});
 	// create order button
@@ -123,7 +123,7 @@ let updateButtonState = function (button, quantity) {
 
 };
 // add the product to the cart
-let addToCart = (index, quantity) => {
+let addToCart = (index, quantity, /*button, input*/) => {
 	let product = catalog[index];
 	let existingCartItem = document.getElementById("cartItem-" + index);
 	if (existingCartItem) {
@@ -147,10 +147,48 @@ let addToCart = (index, quantity) => {
 		itemImg.alt = product.name;
 
 
+		// create input quantity element
+		let input = document.createElement("input");
+		input.id = index + '-' + inputIdKey;
+		input.type = "number";
+		input.value = "0";
+		//add event handling
+		input.addEventListener("input", function () {
+
+			let quantity = (input.value);
+			if (quantity === RegExp("\D+") || quantity < MIN_QTY || quantity == 0 || quantity > MAX_QTY) {
+				input.value = "0";
+			}
+
+			updateButtonState(button, quantity);
+		});
+		// create order button
+		let button = document.createElement("button");
+		button.className = 'commander';
+		button.id = index + "-" + orderIdKey;
+		// Use the click of the button 
+		button.addEventListener("click", function () {
+			let quantity = parseInt(input.value);
+			if (quantity > 0) {
+				addToCart(index, quantity);
+				input.value = "0";
+				updateTotal();
+			} else {
+
+				console.log("Ajouté un minimum de 1 en quantité !");
+
+			}
+			button.style.pointerEvents = quantity == 0 ? "none" : "auto"
+
+			button.style.opacity = quantity == 0 ? 0.25 : 1;
+
+		});
+
 		cartItem.appendChild(itemImg);
 		cartItem.appendChild(itemName);
-		cartItem.appendChild(itemQuantity)
-		// cartItem.appendChild(itemPrice);
+		cartItem.appendChild(itemQuantity);
+		cartItem.appendChild(input);
+		cartItem.appendChild(button);
 
 
 		let deleteButton = document.createElement("button");
@@ -180,8 +218,8 @@ let updateTotal = () => {
 		total += quantity * product.price;
 	});
 	total = total.toFixed(2);
-	document.getElementById("montant").textContent = total;	
-	
+	document.getElementById("montant").textContent = total;
+
 
 };
 
@@ -200,8 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// // Retrieve the required DOM elements
 	const filterInput = document.getElementById("filter");
 	const boutiqueDiv = document.getElementById("boutique");
-	const totalSpan = document.getElementById("montant");
-	const achatsDiv = document.querySelector(".achats");
+
 
 	// Product display update function
 	function updateDisplay(products) {
@@ -234,31 +271,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Save the shopping cart to localStorage
 let saveCartToLocalStorage = () => {
-    let cartItems = document.querySelectorAll("#panier .achat");
-    let cartData = [];
+	let cartItems = document.querySelectorAll("#panier .achat");
+	let cartData = [];
 
-    cartItems.forEach(function (cartItem) {
-        let quantity = parseInt(cartItem.querySelector(".quantite").textContent);
-        let index = cartItem.id.split("-")[1];
-        cartData.push({ index, quantity });
-    });
+	cartItems.forEach(function (cartItem) {
+		let quantity = parseInt(cartItem.querySelector(".quantite").textContent);
+		let index = cartItem.id.split("-")[1];
+		cartData.push({ index, quantity });
+	});
 
-    localStorage.setItem("shoppingCart", JSON.stringify(cartData));
+	localStorage.setItem("shoppingCart", JSON.stringify(cartData));
 };
 
 // Load the shopping cart from localStorage
 let loadCartFromLocalStorage = () => {
-    let cartData = localStorage.getItem("shoppingCart");
+	let cartData = localStorage.getItem("shoppingCart");
 
-    if (cartData) {
-        cartData = JSON.parse(cartData);
+	if (cartData) {
+		cartData = JSON.parse(cartData);
 
-        cartData.forEach(({ index, quantity }) => {
-            addToCart(index, quantity);
-        });
+		cartData.forEach(({ index, quantity }) => {
+			addToCart(index, quantity);
+		});
 
-        updateTotal();
-    }
+		updateTotal();
+	}
 };
 
 // Call the loadCartFromLocalStorage function when the page is loaded
