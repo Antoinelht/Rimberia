@@ -205,6 +205,7 @@ let addToCart = (index, quantity, /*button, input*/) => {
 
 	}
 	updateTotal();
+
 };
 
 // check the total cart 
